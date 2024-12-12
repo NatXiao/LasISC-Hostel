@@ -25,3 +25,5 @@ Our hotel has 12 floors, with around 4 to 10 rooms each. It has 4 deluxe rooms, 
 ## Filling the table
 
 We think finding some random customer names will be easy to generates, and the other already has some terminology (single, double, triple, ... or standard, superior, deluxe and suites), so we don't think we will have some trouble to create it.
+
+![LasISC Hostel diagram](https://github.com/user-attachments/assets/ad88f7c2-ad3a-4aaa-bf38-933eb0348db5)
