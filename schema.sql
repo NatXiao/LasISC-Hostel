@@ -68,7 +68,7 @@ CREATE TABLE Floor_Employee (
 );
 
 CREATE TABLE City (
-	id serial primary key,
+  id serial primary key,
   zip int,
   name varchar(50),
   fk_countryId int,
@@ -76,15 +76,6 @@ CREATE TABLE City (
 );
 
 CREATE TABLE Country (
-	id serial primary key,
+  id serial primary key,
   name varchar(50)
 );
-
-
-
-
-
-
-
-
-
