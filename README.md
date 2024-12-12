@@ -16,6 +16,7 @@ We decide to not be further than one hotel, because we are limited in time, and 
 The challenge we expect to uncounter are:
   - the management of the reservation (dates, an reservation in advance), with insert and the queries.
   - the management of the time and our complexity of the project.
+  - the diversity of the client (family for example)
 
 ## Metrics
 
