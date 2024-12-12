@@ -18,12 +18,12 @@ CREATE TABLE Floor (
 );
 
 CREATE TABLE Room (
-  id serial primary key
+  id serial primary key,
   number int,
   max_people int,
   fk_floorId int,
   fk_room_typeId int,
-  FOREIGN KEY (fk_floorId) REFERENCES Floor (id)
+  FOREIGN KEY (fk_floorId) REFERENCES Floor (id),
   FOREIGN KEY (fk_room_typeId) REFERENCES Room_Type (id)
 );
 
@@ -46,7 +46,7 @@ CREATE TABLE People (
 );
 
 CREATE TABLE Employee (
-  id serial primary key
+  id serial primary key,
   iban varchar(50),
   entry_date date,
   end_date date,
@@ -63,12 +63,12 @@ CREATE TABLE Floor_Employee (
   id serial primary key,
   fk_floorId int,
   fk_employeeId int,
-  FOREIGN KEY (fk_floorId) REFERENCES Floor (id)
+  FOREIGN KEY (fk_floorId) REFERENCES Floor (id),
   FOREIGN KEY (fk_employeeId) REFERENCES Employee (id)
 );
 
 CREATE TABLE City (
-  id serial primary key,
+	id serial primary key,
   zip int,
   name varchar(50),
   fk_countryId int,
@@ -76,6 +76,6 @@ CREATE TABLE City (
 );
 
 CREATE TABLE Country (
-  id serial primary key,
+	id serial primary key,
   name varchar(50)
 );
