@@ -6,7 +6,7 @@ The time we have for this is 2 weeks.
 
 ## Why this choice?
 
-We choose this topic because we found it interesting. We still have hotel that doesn't have a informatized service for register everything, so it would be useful for people who works on this topic, especially for small business. We want the administration to be simple and easy.
+We choose this topic because we found it interesting. We still find hotel that doesn't have a computerised system for the check-in or the check-out, so it would be useful for people who works on this topic, especially for small business. We want the administration to be simple and easy.
 
 ## Complexity / Particularity / Modelisation
 
@@ -15,8 +15,7 @@ We decide to not be further than one hotel, because we are limited in time, and 
 ## Challenges
 The challenge we expect to uncounter are:
   - the management of the reservation (dates, an reservation in advance), with insert and the queries.
-  - management of the time and our complexity of the project.
-
+  - the management of the time and our complexity of the project.
 
 ## Metrics
 
