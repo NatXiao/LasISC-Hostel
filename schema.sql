@@ -1,104 +1,103 @@
--- Table des pays, utilisée pour stocker les noms des pays. 
--- Ces pays peuvent être associés aux clients ou aux employés.
+-- Table for storing country names. 
+-- These countries can be associated with customers or employees.
 CREATE TABLE Country (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(50)
+  name VARCHAR(50) NOT NULL
 );
 
--- Table des villes, utilisée pour stocker les informations des villes 
--- (comme le code postal et le nom) ainsi que leur association avec un pays.
+-- Table for storing city information (such as postal codes and names) 
+-- and their association with a country.
 CREATE TABLE City (
   id SERIAL PRIMARY KEY,
-  zip INTEGER,
-  name VARCHAR(50),
-  fk_countryId INTEGER,
+  zip INTEGER NOT NULL UNIQUE,
+  name VARCHAR(50) NOT NULL,
+  fk_countryId INTEGER NOT NULL,
   FOREIGN KEY (fk_countryId) REFERENCES Country (id)
 );
 
--- Table des personnes, utilisée pour stocker les informations des individus, 
--- qu'ils soient clients ou employés.
+-- Table for storing individual information, 
+-- whether they are customers or employees.
 CREATE TABLE People (
   id SERIAL PRIMARY KEY,
-  firstname VARCHAR(50),
-  lastname VARCHAR(50),
+  firstname VARCHAR(50) NOT NULL,
+  lastname VARCHAR(50) NOT NULL,
   birthdate DATE,
-  phone_number VARCHAR(10),
-  email VARCHAR(50),
+  phone_number VARCHAR(15) NOT NULL,
+  email VARCHAR(64) NOT NULL,
   fk_cityId INTEGER,
-  adresse VARCHAR(50),
+  address VARCHAR(50),
   FOREIGN KEY (fk_cityId) REFERENCES City (id)
 );
 
--- Table des étages, utilisée pour représenter les étages d'un bâtiment 
--- où se trouvent les chambres.
+-- Table for representing floors of a building 
+-- where the rooms are located.
 CREATE TABLE Floor (
   id SERIAL PRIMARY KEY,
   number INTEGER NOT NULL
 );
 
--- Table des types de chambres, utilisée pour définir les différentes 
--- catégories de chambres et leurs tarifs unitaires.
+-- Table for defining different room types 
+-- and their unit prices.
 CREATE TABLE Room_Type (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(50),
-  unit_price decimal(10, 2)
+  name VARCHAR(20) NOT NULL,
+  unit_price DECIMAL(10, 2) CHECK (unit_price > 0)
 );
 
--- Table des chambres, utilisée pour stocker les informations des chambres, 
--- leur capacité maximale et leurs associations avec un étage et un type de chambre.
+-- Table for storing room information, 
+-- their maximum capacity, and associations with a floor and a room type.
 CREATE TABLE Room (
   id SERIAL PRIMARY KEY,
-  number INTEGER,
-  fk_floorId INTEGER,
-  fk_room_typeId INTEGER,
+  number INTEGER UNIQUE,
+  fk_floorId INTEGER NOT NULL,
+  fk_room_typeId INTEGER NOT NULL,
   max_people INTEGER,
   FOREIGN KEY (fk_floorId) REFERENCES Floor (id),
   FOREIGN KEY (fk_room_typeId) REFERENCES Room_Type (id)
 );
 
--- Table des réservations, utilisée pour enregistrer les détails 
--- des séjours des clients, y compris les dates d'entrée et de sortie, 
--- le nombre de personnes, les animaux, et la chambre réservée.
+-- Table for recording details of customer stays, 
+-- including check-in and check-out dates, the number of people, 
+-- pets, and the reserved room.
 CREATE TABLE Reservation (
   id SERIAL PRIMARY KEY,
   fk_peopleId INTEGER,
   fk_roomId INTEGER,
-  entry_date DATE default CURRENT_DATE NOT NULL,
-  out_date DATE NOT NULL,
-  animals boolean,
-  price decimal(10, 2),
-  is_arrived boolean,
+  entry_date DATE DEFAULT CURRENT_DATE NOT NULL,
+  out_date DATE NOT NULL CHECK (out_date > entry_date),
+  animals BOOLEAN,
+  has_arrived BOOLEAN,
   number_people INTEGER,
   FOREIGN KEY (fk_peopleId) REFERENCES People (id),
   FOREIGN KEY (fk_roomId) REFERENCES Room (id)
 );
 
--- Table des employés, utilisée pour stocker les informations liées 
--- aux employés, y compris leur association avec une personne existante.
+-- Table for storing employee information, 
+-- including their association with an existing person.
 CREATE TABLE Employee (
   id SERIAL PRIMARY KEY,
-  fk_peopleId INTEGER,
-  iban VARCHAR(50),
-  entry_date DATE,
-  end_date DATE,
+  fk_peopleId INTEGER NOT NULL,
+  iban VARCHAR(34) NOT NULL,
+  entry_date DATE DEFAULT CURRENT_DATE NOT NULL,
+  end_date DATE CHECK (end_date > entry_date),
   FOREIGN KEY (fk_peopleId) REFERENCES People (id)
 );
 
--- Table des types d'employés, utilisée pour définir les différentes 
--- fonctions ou métiers occupés par les employés.
+-- Table for defining different types of employees 
+-- and their job roles.
 CREATE TABLE Employee_Type (
   id SERIAL PRIMARY KEY,
   job VARCHAR(50)
 );
 
--- Table des employés assignés aux étages, utilisée pour enregistrer 
--- l'association entre un employé, un étage et un type de poste.
+-- Table for recording the assignment of employees to floors, 
+-- including their association with a floor and a job type.
 CREATE TABLE Floor_Employee (
   id SERIAL PRIMARY KEY,
-  fk_floorId INTEGER,
-  fk_employeeId INTEGER,
-  fk_employeetypeId INTEGER,
+  fk_floorId INTEGER NOT NULL,
+  fk_employeeId INTEGER NOT NULL,
+  fk_employee_typeId INTEGER,
   FOREIGN KEY (fk_floorId) REFERENCES Floor (id),
   FOREIGN KEY (fk_employeeId) REFERENCES Employee (id),
-  FOREIGN KEY (fk_employeetypeId) REFERENCES Employee_Type (id)
+  FOREIGN KEY (fk_employee_typeId) REFERENCES Employee_Type (id)
 );
