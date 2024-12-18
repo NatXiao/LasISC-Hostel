@@ -25,7 +25,6 @@ Our hotel has 12 floors, with around 4 to 10 rooms each. It has 4 deluxe rooms, 
 ## Interesting queries to do 
 
 - Get all available rooms at specific dates for specific number of people
-SELECT FROM room WHERE max_people =  '3' AND
 - Statistic, where do the clients come from, the percentage of no show, the different length of stay of customer
 - Get the total for the check out
 - Verify a person reservation
