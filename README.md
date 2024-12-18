@@ -39,6 +39,12 @@ We think finding some random customer names will be easy to generates, and the o
 
 Our schema is in NF3.
 
-## Other
+## Questions from Feedback
 
-Something that could be great to test is that Reservation.number_people doesn't exceed Room.max_people. We won't implement it, but we could add a trigger to prevent this type of errors.
+### 1) How can I ensure that reservation.number_people does not exceed Room.max_people?
+
+We need to create a trigger which is activated when there is an update or an insert on the reservation table. This will take place before the update or insert events taking into account the reservation and room table. The trigger will retrieve the value of Room.max_people and ensure that the value of Reservation.number_people does not exceed it, otherwise the program will display an exception and interrupt the process.
+
+### 2) How to model if someone is working at reception (i.e. not on a floor)
+
+The Floor_Employee table handles this case, using foreign keys to make references to the Floor => value 0, Employee => the employee concerned and Employee_Type => the receptionist function.
