@@ -1,7 +1,7 @@
 # LasISC-Hostel
 
 ## Description
-This project represent a managment of one hotel (Clients, chambers, reservations, services) in a database. We are using PostGres for this.
+This project represent a managment of one hotel (Clients, rooms, reservations, services) in a database. We are using PostgeSQL for this.
 The time we have for this is 2 weeks.
 
 ## Why this choice?
@@ -20,10 +20,26 @@ The challenge we expect to uncounter are:
 
 ## Metrics
 
-Our hotel has 12 floors, with around 4 to 10 rooms each. It has 4 deluxe rooms, 50 standard single rooms, 30 standards double rooms, 10 superior rooms and 2 suites. It has 123 customers today, with 20 leaving tomorrow. We have 2 employees in charge of the cleaning of each floor, and 4 for welcoming the guests.
+Our hotel has 12 floors, with around 4 to 10 rooms each. It has 4 deluxe rooms, 50 standard single rooms, 30 standards double rooms, 10 superior rooms and 2 suites. It has 123 customers today, with 20 leaving tomorrow. We have 2 employees in charge of the cleaning of each floor, and 4 for welcoming the guests (which are represent at the floor 0).
+
+## Interesting queries to do 
+
+- Get all available rooms at specific dates for specific number of people
+SELECT FROM room WHERE max_people =  '3' AND
+- Statistic, where do the clients come from, the percentage of no show, the different length of stay of customer
+- Get the total for the check out
+- Verify a person reservation
+
+With those queries, We think we need to add an index on the reservation table on the entry_date and out_date, because we think employee will often execute a querie that use this columns (typically for get available rooms). Otherwise, we don't think the table will be big enough to need index.
 
 ## Filling the table
 
 We think finding some random customer names will be easy to generates, and the other already has some terminology (single, double, triple, ... or standard, superior, deluxe and suites), so we don't think we will have some trouble to create it.
 
 ![LasISC Hostel diagram](https://github.com/user-attachments/assets/ad88f7c2-ad3a-4aaa-bf38-933eb0348db5)
+
+Our schema is in NF3.
+
+## Other
+
+Something that could be great to test is that Reservation.number_people doesn't exceed Room.max_people. We won't implement it, but we could add a trigger to prevent this type of errors.
