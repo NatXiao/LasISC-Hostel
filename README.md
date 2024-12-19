@@ -48,3 +48,7 @@ We need to create a trigger which is activated when there is an update or an ins
 ### 2) How to model if someone is working at reception (i.e. not on a floor)
 
 The Floor_Employee table handles this case, using foreign keys to make references to the Floor => value 0, Employee => the employee concerned and Employee_Type => the receptionist function.
+
+## Conclusion
+
+Our project was finished in time, and we realised how complex a database on an hotel could become. There are a lot of variation, in the demands for example. Creating the data is also fastidious.
