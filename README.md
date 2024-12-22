@@ -20,7 +20,7 @@ The challenge we expect to uncounter are:
 
 ## Metrics
 
-Our hotel has 12 floors, with around 2 to 10 rooms each. It has for example 4 deluxe rooms, 50 standard single rooms, 30 standards double rooms, 10 superior rooms and 2 suites. It has 123 customers today, with 20 leaving tomorrow. We have 2 employees in charge of the cleaning of each floor, and 4 for welcoming the guests (which are represent at the floor 0).
+Our hotel has 12 floors, with around 2 to 10 rooms each. It has for example 4 deluxe rooms, 6 standard single rooms, 6 standards double rooms, 10 superior rooms and 2 suites. It has 123 customers today, with 20 leaving tomorrow. We have 1 employee in charge of the cleaning of each floor, and 4 for welcoming the guests (which are represent at the floor 0).
 
 ## Interesting queries to do 
 
