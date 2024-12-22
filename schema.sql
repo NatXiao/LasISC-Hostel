@@ -22,8 +22,8 @@ CREATE TABLE People (
   firstname VARCHAR(50) NOT NULL,
   lastname VARCHAR(50) NOT NULL,
   birthdate DATE,
-  phone_number VARCHAR(15) NOT NULL,
-  email VARCHAR(64) NOT NULL,
+  phone_number VARCHAR(15) NOT NULL UNIQUE,
+  email VARCHAR(64) NOT NULL UNIQUE,
   fk_cityId INTEGER,
   address VARCHAR(50),
   FOREIGN KEY (fk_cityId) REFERENCES City (id)
